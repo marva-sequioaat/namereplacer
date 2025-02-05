@@ -53,18 +53,22 @@ def file_processor(input,dry_run=False):
 
     try:
 
-            
+        stats=defaultdict(int)    
         with open(input,"r",encoding="utf-8") as f:
             lines=f.read()
-            stats=defaultdict(int)
+            
             for name,replace_name in replace_dic.items():
                 count = len(re.findall(re.escape(name), lines, flags=re.IGNORECASE))
                 stats[name] += count
                 lines=re.sub(re.escape(name),replace_name,lines,flags=re.IGNORECASE)
-            logger.info(f"name count:{stats}")
+            
         if not dry_run:
             with open("/data/output.txt","w",encoding="utf-8") as f:
                     f.write(lines)
+            logger.info("Content wrote to output file successfully")
+        else:
+            logger.info("No content replaced.")
+        logger.info(f"name count:{stats}")
         
     except IOError as e:
         logger.error(f"Error reading/writing files: {e}")
