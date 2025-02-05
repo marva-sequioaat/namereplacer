@@ -32,7 +32,7 @@ def fetch_github_data(link):
         logger.error(f"Failed to fetch data: {e}")
         return None
 
-def file_processor(input):
+def file_processor(input,dry_run=False):
     """
     Reads a mapping CSV file and replaces specified names in the input file.
     Saves the modified content to 'output.txt'.
@@ -62,8 +62,10 @@ def file_processor(input):
                 stats[name] += count
                 lines=re.sub(re.escape(name),replace_name,lines,flags=re.IGNORECASE)
             logger.info(f"name count:{stats}")
-        with open("output.txt","w",encoding="utf-8") as f:
-                f.write(lines)
+        if not dry_run:
+            with open("output.txt","w",encoding="utf-8") as f:
+                    f.write(lines)
+        
     except IOError as e:
         logger.error(f"Error reading/writing files: {e}")
         return None        
@@ -83,11 +85,7 @@ def word_count(input):
 
 
 
-if __name__=="__main__":
-
-    api_url=API_URL
-    result=fetch_github_data(api_url)
-    file_processor(result)
+    
 
 
 
