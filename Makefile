@@ -1,4 +1,3 @@
-.PHONY: sync_data run_replace dry_run_replace run_count docker-build
 
 # Variables
 DOCKER_IMAGE_NAME = namereplacer
