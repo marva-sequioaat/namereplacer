@@ -71,17 +71,26 @@ def file_processor(input,dry_run=False):
         return None        
 
 
-def word_count(input):
+def word_count(input, target_word):
     try:
         with open(input, "r", encoding="utf-8") as f:
             text = f.read()
             words = text.split()
-            word_count = len(words)
-            unique_words = len(set(words))
-            logger.info(f"Total words: {word_count}")
-            logger.info(f"Unique words: {unique_words}")
+            
+            # Convert all words to lowercase for case-insensitive comparison
+            words = [word.lower() for word in words]
+            target_word = target_word.lower()
+            
+            # Count occurrences of the target word
+            count = words.count(target_word)
+            if count>0:
+                logger.info(f"Occurrences of '{target_word}': {count}")
+            else:
+                logger.info("Word not found")
+            return count
     except IOError as e:
         logger.error(f"Error reading file: {e}")
+        return 0
 
 
 
