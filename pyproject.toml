@@ -13,6 +13,7 @@ include = [
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+  "requests-mock (>=1.12.1,<2.0.0)"  
 ]
 
 [project.scripts]

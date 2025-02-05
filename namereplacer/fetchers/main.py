@@ -16,7 +16,7 @@ def fetch_github_data(link):
     try:
         response=requests.get(link)
         
-        input_file="input.txt"
+        input_file="/data/input.txt"
         if response.status_code==200:
             file_content=response.text
             try:
@@ -63,7 +63,7 @@ def file_processor(input,dry_run=False):
                 lines=re.sub(re.escape(name),replace_name,lines,flags=re.IGNORECASE)
             logger.info(f"name count:{stats}")
         if not dry_run:
-            with open("output.txt","w",encoding="utf-8") as f:
+            with open("/data/output.txt","w",encoding="utf-8") as f:
                     f.write(lines)
         
     except IOError as e:
