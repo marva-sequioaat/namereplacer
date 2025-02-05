@@ -4,7 +4,6 @@ DOCKER_IMAGE_NAME = namereplacer
 DATA_DIR = /data
 INPUT_FILE = $(DATA_DIR)/input.txt
 OUTPUT_FILE = $(DATA_DIR)/output.txt
-MAPPING_FILE = namereplacer/fetchers/mapping.csv
 LOCAL_DIR=/mnt/c/Users/SequoiaAT/Desktop/data
 # Build the wheel first
 docker-build:
@@ -27,5 +26,5 @@ dry_run_replace:
 		python -c "from namereplacer.fetchers.main import file_processor; file_processor('$(INPUT_FILE)', True)"
 
 run_count:
-	docker run --rm -v $(LOCAL_DIR)/data:$(DATA_DIR) $(DOCKER_IMAGE_NAME) \
+	docker run --rm -v $(LOCAL_DIR):$(DATA_DIR) $(DOCKER_IMAGE_NAME) \
 		python -c "from namereplacer.fetchers.main import word_count; word_count('$(INPUT_FILE)', '$(target_word)')"

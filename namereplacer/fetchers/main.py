@@ -76,6 +76,7 @@ def file_processor(input,dry_run=False):
 
 
 def word_count(input, target_word):
+    """count number of occurence of a word in the input.txt"""
     try:
         with open(input, "r", encoding="utf-8") as f:
             text = f.read()
