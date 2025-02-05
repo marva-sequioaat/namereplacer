@@ -4,7 +4,7 @@ DOCKER_IMAGE_NAME = namereplacer
 DATA_DIR = /data
 INPUT_FILE = $(DATA_DIR)/input.txt
 OUTPUT_FILE = $(DATA_DIR)/output.txt
-LOCAL_DIR=/mnt/c/Users/SequoiaAT/Desktop/data
+LOCAL_DIR=/data
 # Build the wheel first
 docker-build:
 	poetry build
